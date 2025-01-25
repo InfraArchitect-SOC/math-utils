@@ -1,3 +1,59 @@
-git add pom.xml
-git commit -m "Add Maven POM file"
-git push origin main
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  
+  <!-- Unique project identifiers -->
+  <groupId>com.yourdomain</groupId>
+  <artifactId>math-utils</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <!-- Compiler settings -->
+  <properties>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <junit.version>4.13.2</junit.version>
+    <jacoco.version>0.8.7</jacoco.version>
+  </properties>
+
+  <!-- Dependencies (e.g., JUnit for testing) -->
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <!-- Plugins (e.g., JaCoCo for code coverage) -->
+  <build>
+    <plugins>
+      <!-- Maven Compiler Plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+      </plugin>
+      
+      <!-- JaCoCo Code Coverage Plugin -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>${jacoco.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
