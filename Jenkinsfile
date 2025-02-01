@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        // Define environment variables if needed
+        MAVEN_HOME = tool name: 'Maven 3.8.6', type: 'maven' // Replace "Maven 3.8.6" with the actual name from Jenkins
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -9,29 +14,24 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Build') {
             steps {
-                // Install pytest and pytest-html
-                bat 'pip install pytest pytest-html'
+                // Build the project using Maven
+                bat "${MAVEN_HOME}\\bin\\mvn clean install"
             }
         }
 
         stage('Test') {
             steps {
-                // Run pytest and generate an HTML report
-                bat 'pytest test_math_utils.py --html=report.html'
+                // Run JUnit tests
+                bat "${MAVEN_HOME}\\bin\\mvn test"
             }
         }
 
         stage('Publish Test Results') {
             steps {
-                // Publish HTML report
-                publishHTML(target: [
-                    reportName: 'Python Test Report',
-                    reportDir: '.',
-                    reportFiles: 'report.html',
-                    alwaysLinkToLastBuild: true
-                ])
+                // Publish JUnit test results
+                junit '**/target/surefire-reports/*.xml'
             }
         }
     }
