@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Pull code from GitHub
-                git branch: 'main', url: 'https://github.com/InfraArchitect-SOC/math-utils.git', credentialsId: 'your-credentials-id'
+                git branch: 'main', url: 'https://github.com/InfraArchitect-SOC/math-utils.git', credentialsId: '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'
             }
         }
 
