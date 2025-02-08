@@ -14,7 +14,7 @@ public class MathUtils {
 
     public double divide(int a, int b) {
         if (b == 0) {
-            return -1.0; // Handle division by zero
+            return -1.0; // Handle division by zero s
         }
         return (double) a / b;
     }
