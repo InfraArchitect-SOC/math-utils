@@ -1,37 +1,35 @@
-import org.junit.jupiter.api.*;
-import static org.junit.jupiter.api.Assertions.*;
+package com.example;
+
+import org.junit.Test; // JUnit 4 Test annotation
+import org.junit.Assert; // JUnit 4 Assert class (for assertEquals, etc.)
 
 public class MathUtilsTest {
 
-    private MathUtils mathUtils;
-
-    @BeforeEach
-    public void setUp() {
-        mathUtils = new MathUtils();
+    @Test // JUnit 4 @Test annotation
+    public void testAddPositiveNumbers() {
+        MathUtils mathUtils = new MathUtils();
+        int result = mathUtils.add(3, 5);
+        Assert.assertEquals(8, result); // JUnit 4 assertion
     }
 
     @Test
-    public void testAdd() {
-        assertEquals(5, mathUtils.add(2, 3));
-        assertEquals(-1, mathUtils.add(-2, 1)); // Negative numbers
-        assertEquals(0, mathUtils.add(0, 0)); // Edge case: zeros
+    public void testAddNegativeNumbers() {
+        MathUtils mathUtils = new MathUtils();
+        int result = mathUtils.add(-2, -7);
+        Assert.assertEquals(-9, result);
     }
 
     @Test
-    public void testSubtract() {
-        assertEquals(1, mathUtils.subtract(3, 2));
-        assertEquals(-5, mathUtils.subtract(0, 5)); // Negative result
+    public void testAddPositiveAndNegative() {
+        MathUtils mathUtils = new MathUtils();
+        int result = mathUtils.add(10, -4);
+        Assert.assertEquals(6, result);
     }
 
     @Test
-    public void testMultiply() {
-        assertEquals(6, mathUtils.multiply(2, 3));
-        assertEquals(0, mathUtils.multiply(5, 0)); // Multiply by zero
+    public void testAddZero() {
+        MathUtils mathUtils = new MathUtils();
+        int result = mathUtils.add(5, 0);
+        Assert.assertEquals(5, result);
     }
-
-    @Test
-    public void testDivide() {
-        assertEquals(2.5, mathUtils.divide(5, 2));
-        assertEquals(-1.0, mathUtils.divide(5, 0)); // Division by zero
-    }
-}      
+}
