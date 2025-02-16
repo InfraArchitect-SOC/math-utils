@@ -1,25 +1,25 @@
-<project>
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.example</groupId>
-  <artifactId>MathUtils</artifactId>
-  <version>1.0-SNAPSHOT</version>
-
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.13.2</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-
-  <build>
+<build>
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.22.2</version>
-      </plugin>
+        <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.8</version>
+            <executions>
+                <execution>
+                    <id>prepare-agent</id>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                    <phase>process-test-classes</phase> <!— or pre-integration-test —>
+                </execution>
+                <execution>
+                    <id>report</id>
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                    <phase>post-test</phase>         <!— or verify —>
+                </execution>
+            </executions>
+        </plugin>
     </plugins>
-  </build>
-</project>
+</build>
