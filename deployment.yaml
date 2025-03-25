@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: java-app-job
+spec:
+  template:
+    metadata:
+      labels:
+        app: java-app
+    spec:
+      containers:
+        - name: java-app
+          image: saisa/java-app:v2
+          imagePullPolicy: Always
+      restartPolicy: Never
